@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "oneway/auth/v1;authv1";
+
+service Auth {
+  // Регистрация нового пользователя
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+
+  // Логин пользователя и получение JWT токена
+  rpc Login(LoginRequest) returns (LoginResponse);
+
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+}
+
+message RegisterRequest {
+  string email = 1;        
+  string password = 2;      
+  string display_name = 3; 
+}
+
+
+message RegisterResponse {
+  int64 user_id = 1;       
+}
+
+message LoginRequest {
+  string email = 1;     
+  string password = 2;    
+}
+
+
+message LoginResponse {
+  string token = 1;  
+  int64 user_id = 2; 
+}
+
+
+message GetUserRequest {
+  int64 user_id = 1;
+}
+
+message GetUserResponse {
+  int64 user_id = 1;
+  string email = 2;
+  string display_name = 3;
+}
