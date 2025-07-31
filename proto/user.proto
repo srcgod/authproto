@@ -38,7 +38,7 @@ message LoginResponse {
 
 
 message GetUserRequest {
-  int64 user_id = 1;
+  string user_email = 1;
 }
 
 message GetUserResponse {
